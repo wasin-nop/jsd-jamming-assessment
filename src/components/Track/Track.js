@@ -4,7 +4,11 @@ function Track(props) {
   // console.log(props.isRemoval);
   const renderAction = () => {
     if (props.isRemoval) {
-      return <button className="Track-action">-</button>;
+      return (
+        <button className="Track-action" onClick={removeTrack}>
+          -
+        </button>
+      );
     } else {
       return (
         <button className="Track-action" onClick={addTrack}>
@@ -16,6 +20,10 @@ function Track(props) {
 
   const addTrack = () => {
     props.onAdd(props.track);
+  };
+
+  const removeTrack = () => {
+    props.onRemove(props.track);
   };
 
   return (
