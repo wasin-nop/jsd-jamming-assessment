@@ -1,6 +1,6 @@
-import './SearchResults.css';
+import "./SearchResults.css";
 
-function SearchResults(props) {
+export function SearchResults(props) {
   return <div></div>;
 }
 
