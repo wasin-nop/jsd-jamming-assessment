@@ -2,12 +2,20 @@ import "./Track.css";
 
 function Track(props) {
   // console.log(props.isRemoval);
-  const renderAction = (props) => {
+  const renderAction = () => {
     if (props.isRemoval) {
       return <button className="Track-action">-</button>;
     } else {
-      return <button className="Track-action">+</button>;
+      return (
+        <button className="Track-action" onClick={addTrack}>
+          +
+        </button>
+      );
     }
+  };
+
+  const addTrack = () => {
+    props.onAdd(props.track);
   };
 
   return (
@@ -18,7 +26,7 @@ function Track(props) {
           {props.track.artist} | {props.track.album}
         </p>
       </div>
-      {renderAction}
+      {renderAction()}
     </div>
   );
 }

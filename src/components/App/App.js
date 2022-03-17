@@ -33,7 +33,7 @@ function App() {
   ]);
 
   const addTrack = (track) => {
-    let tracks = { playlistTracks };
+    let tracks = [...playlistTracks];
     if (tracks.find((savedTrack) => savedTrack.id === track.id)) {
       return;
     }
@@ -41,6 +41,8 @@ function App() {
     tracks.push(track);
     setPlaylistTracks(tracks);
   };
+
+  const removeTrack = (track) => {};
 
   return (
     <div>
