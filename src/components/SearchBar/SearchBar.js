@@ -3,15 +3,15 @@ import "./SearchBar.css";
 import { useState } from "react";
 
 function SearchBar(props) {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [term, setTerm] = useState("");
 
   const search = () => {
-    props.onSearch(searchTerm);
-    setSearchTerm("");
+    props.onSearch(term);
+    setTerm("");
   };
 
   const handleTermChange = (e) => {
-    setSearchTerm(e.target.value);
+    setTerm(e.target.value);
   };
 
   return (
@@ -19,7 +19,7 @@ function SearchBar(props) {
       <input
         placeholder="Enter A Song, Album, or Artist"
         onChange={handleTermChange}
-        value={searchTerm}
+        value={term}
       />
       <button className="SearchButton" onClick={search}>
         SEARCH

@@ -4,6 +4,8 @@ import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
 
+import Spotify from "../../utils/Spotify";
+
 function App() {
   const [searchResults, setSearchResults] = useState([
     { name: "name1", artist: "artist1", album: "album1", id: 1 },
@@ -57,7 +59,9 @@ function App() {
   };
 
   const search = (term) => {
-    console.log(term);
+    Spotify.search(term).then((searchResults) => {
+      setSearchResults(searchResults);
+    });
   };
 
   return (
