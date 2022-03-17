@@ -1,7 +1,8 @@
 import "./Track.css";
 
 function Track(props) {
-  const renderAction = () => {
+  // console.log(props.isRemoval);
+  const renderAction = (props) => {
     if (props.isRemoval) {
       return <button className="Track-action">-</button>;
     } else {
@@ -12,8 +13,10 @@ function Track(props) {
   return (
     <div className="Track">
       <div className="Track-information">
-        <h3>track name </h3>
-        <p>track artist |track album</p>
+        <h3>{props.track.name}</h3>
+        <p>
+          {props.track.artist} | {props.track.album}
+        </p>
       </div>
       {renderAction}
     </div>
