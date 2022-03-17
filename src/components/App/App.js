@@ -52,6 +52,8 @@ function App() {
     setPlaylistName(name);
   };
 
+  const savePlaylist = () => {};
+
   return (
     <div>
       <h1>
