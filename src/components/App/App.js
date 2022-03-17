@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
@@ -7,32 +7,9 @@ import Playlist from "../Playlist/Playlist";
 import Spotify from "../../utils/Spotify";
 
 function App() {
-  const [searchResults, setSearchResults] = useState([
-    { name: "name1", artist: "artist1", album: "album1", id: 1 },
-    { name: "name2", artist: "artist2", album: "album2", id: 2 },
-    { name: "name3", artist: "artist3", album: "album3", id: 3 },
-  ]);
+  const [searchResults, setSearchResults] = useState([]);
   const [playlistName, setPlaylistName] = useState("My Playlist");
-  const [playlistTracks, setPlaylistTracks] = useState([
-    {
-      name: "playlistName1",
-      artist: "playlistArtist1",
-      album: "playlistAlbum1",
-      id: 4,
-    },
-    {
-      name: "playlistName2",
-      artist: "playlistArtist2",
-      album: "playlistAlbum2",
-      id: 5,
-    },
-    {
-      name: "playlistName3",
-      artist: "playlistArtist3",
-      album: "playlistAlbum3",
-      id: 6,
-    },
-  ]);
+  const [playlistTracks, setPlaylistTracks] = useState([]);
 
   const addTrack = (track) => {
     let tracks = [...playlistTracks];
@@ -55,7 +32,11 @@ function App() {
   };
 
   const savePlaylist = () => {
-    const trackUris = setPlaylistTracks.map((track) => track.uri);
+    const trackUris = playlistTracks.map((track) => track.uri);
+    Spotify.savePlaylist(playlistName, trackUris).then(() => {
+      setPlaylistTracks([]);
+      setPlaylistName("New Playlist");
+    });
   };
 
   const search = (term) => {
@@ -63,6 +44,10 @@ function App() {
       setSearchResults(searchResults);
     });
   };
+
+  useEffect(() => {
+    Spotify.getAccessToken();
+  }, []);
 
   return (
     <div>
