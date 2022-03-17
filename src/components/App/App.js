@@ -52,7 +52,9 @@ function App() {
     setPlaylistName(name);
   };
 
-  const savePlaylist = () => {};
+  const savePlaylist = () => {
+    const trackUris = setPlaylistTracks.map((track) => track.uri);
+  };
 
   return (
     <div>
@@ -68,6 +70,7 @@ function App() {
             playlistTracks={playlistTracks}
             onRemove={removeTrack}
             onNameChange={updatePlaylistName}
+            onSave={savePlaylist}
           />
         </div>
       </div>
