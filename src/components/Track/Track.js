@@ -1,8 +1,8 @@
 import "./Track.css";
 
 function Track(props) {
-  const renderAction = (props) => {
-    if (props) {
+  const renderAction = () => {
+    if (props.isRemoval) {
       return <button className="Track-action">-</button>;
     } else {
       return <button className="Track-action">+</button>;
